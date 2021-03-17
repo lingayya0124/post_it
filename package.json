@@ -8,7 +8,14 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "bootstrap": "^4.6.0",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.9.1",
+    "dotenv": "^8.2.0",
+    "env": "^0.0.2",
+    "i": "^0.3.6",
+    "npm": "^7.6.3",
+    "snoowrap": "^1.22.0",
     "vue": "^2.6.12",
     "vue-router": "^3.5.1",
     "vuex": "^3.6.2"

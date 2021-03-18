@@ -3,7 +3,7 @@
     <b-card class="card-1 mb-2">
       <b-row>
         <b-col md="2">
-          <a :href="link">
+          <a :href="post.url">
             <img
               :src="post.thumbnail"
               @click:href="post.url"
@@ -13,7 +13,7 @@
         </b-col>
         <b-col>
           <b-card-text class="float-left ml-1">
-            <a :href="link">{{ post.title }}</a>
+            <a :href="post.url">{{ post.title }}</a>
           </b-card-text>
         </b-col>
       </b-row>
@@ -24,11 +24,11 @@
 export default {
   props: ["post"],
 
-  data() {
-    return {
-      link: `https://old.reddit.com/${this.post.permalink}`,
-    };
-  },
+  // data() {
+  //   return {
+  //     link: `https://old.reddit.com/${this.post.permalink}`,
+  //   };
+  // },
 };
 </script>
 

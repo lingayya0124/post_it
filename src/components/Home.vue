@@ -1,14 +1,37 @@
 <template>
-  <div class="home d-flex justify-content-center w-100">
-    <post></post>
+  <div class="home row d-flex justify-content-center w-100">
+    <post
+      class="col-12"
+      v-bind:post="singlepost"
+      v-for="singlepost in posts"
+      :key="singlepost.index"
+    >
+    </post>
+    <br />
   </div>
 </template>
 
 <script>
 import post from "./Posts";
+import access from "@/access.js";
 export default {
   components: {
     post,
+  },
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  mounted: function () {
+    access.reddit_Fetch
+      .getHot()
+      .map((get) => get)
+      .then((data) => {
+        data.forEach((data) => {
+          this.posts.push(data);
+        });
+      });
   },
 };
 </script>

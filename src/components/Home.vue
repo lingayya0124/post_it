@@ -31,6 +31,9 @@ export default {
         data.forEach((data) => {
           this.posts.push(data);
         });
+        console.log(data[0]);
+        console.log(data[1].permalink);
+        console.log(Object.values(data[1]));
       });
   },
 };

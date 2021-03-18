@@ -1,43 +1,14 @@
 <template>
   <div class="home d-flex justify-content-center w-100">
-    <div>
-      <b-card
-        class="card-1 mb-2"
-        v-for="post in posts"
-        :key="post.index"
-        img-top
-        tag="article"
-      >
-        <b-card-text>
-          {{ post.title }}
-        </b-card-text>
-        <img :src="post.thumbnail" alt="" />
-      </b-card>
-    </div>
+    <post></post>
   </div>
 </template>
 
 <script>
-import access from "@/access.js";
+import post from "./Posts";
 export default {
-  name: "HelloWorld",
-  props: {
-    msg: String,
-  },
-  data() {
-    return {
-      posts: [],
-    };
-  },
-  mounted: function () {
-    access.reddit_Fetch
-      .getHot()
-      .map((get) => get)
-      .then((data) => {
-        data.forEach((data) => {
-          this.posts.push(data);
-        });
-      });
+  components: {
+    post,
   },
 };
 </script>
@@ -48,7 +19,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+
   color: #2c3e50;
 }
 

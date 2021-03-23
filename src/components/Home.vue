@@ -3,7 +3,8 @@
     <post
       class="col-12"
       v-bind:post="singlepost"
-      v-for="singlepost in posts"
+      v-bind:index="index"
+      v-for="(singlepost, index) in posts"
       :key="singlepost.index"
     >
     </post>
@@ -26,13 +27,13 @@ export default {
   mounted: function () {
     access.reddit_Fetch
       .getHot()
-      .map((get) => get)
+      // .map((get) => get)
       .then((data) => {
         data.forEach((data) => {
           this.posts.push(data);
         });
-        console.log(data[0]);
-        console.log(data[1].permalink);
+        console.log(data);
+
         console.log(Object.values(data[1]));
       });
   },
@@ -41,6 +42,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
 .home {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

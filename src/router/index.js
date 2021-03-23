@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../components/Home.vue";
+import Comments from "../views/Comments.vue";
 
 Vue.use(VueRouter);
 
@@ -10,11 +11,14 @@ const routes = [
     name: "Home",
     component: Home,
   },
+  {
+    path: "/comments/:id",
+    name: "comments",
+    component: Comments,
+  },
 ];
 
 const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
   routes,
 });
 

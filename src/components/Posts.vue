@@ -2,7 +2,7 @@
   <div>
     <b-card class="card-1 mb-2">
       <b-row>
-        <b-col-1 class="d-flex justify-content-center">
+        <b-col class="col-1 d-flex justify-content-center">
           <div class="icon d-flex flex-column">
             <div class="d-flex justify-content-center">
               <i class="fas fa-caret-up fa-2x"></i>
@@ -14,23 +14,29 @@
               <i class="fas fa-caret-down fa-2x"></i>
             </div>
           </div>
-        </b-col-1>
-        <b-col-2 class="ml-3">
+        </b-col>
+        <b-col cols="2" class="ml-3 d-flex justify-content-center">
           <a :href="post.url">
             <img
+              v-if="post.thumbnail !== 'self'"
               :src="post.thumbnail"
               @click:href="post.url"
               class="imgThumb"
             />
           </a>
-        </b-col-2>
-        <b-col>
+        </b-col>
+        <b-col cols="8">
           <b-card-text class="float-left ml-1">
             <a :href="post.url">{{ post.title }}</a>
             <router-link
               class="link"
               @click="setIndex()"
-              :to="{ name: 'comments', params: { id: index } }"
+              :to="{
+                name: 'comments',
+                params: {
+                  id: { title: post.title, imgsrc: post.url, post_id: post.id },
+                },
+              }"
             >
               <p>{{ post.num_comments }} comments</p></router-link
             >

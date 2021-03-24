@@ -3,7 +3,7 @@
     <div class="">
       <h1 class="mt-2 row d-flex justify-content-center">{{ title }}</h1>
       <br />
-      <div v-if="thumbnail == 'self'" class="row d-flex justify-content-center">
+      <div v-if="thumbnail !== 'self'" class="row d-flex justify-content-center">
         <img class="image" :src="imgsrc" alt="" />
       </div>
 

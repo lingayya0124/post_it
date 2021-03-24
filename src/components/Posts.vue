@@ -1,8 +1,8 @@
 <template>
   <div>
     <b-card class="card-1 mb-2">
-      <b-row>
-        <b-col class="col-1 d-flex justify-content-center">
+      <b-row no-gutters>
+        <b-col md="left" class="d-flex justify-content-center">
           <div class="icon d-flex flex-column">
             <div class="d-flex justify-content-center">
               <i class="fas fa-caret-up fa-2x"></i>
@@ -15,7 +15,7 @@
             </div>
           </div>
         </b-col>
-        <b-col cols="2" class="ml-3 d-flex justify-content-center">
+        <b-col md="left" class="ml-3 d-flex justify-content-center">
           <a :href="post.url">
             <img
               v-if="post.thumbnail !== 'self'"
@@ -31,7 +31,7 @@
             alt=""
           />
         </b-col>
-        <b-col cols="8">
+        <b-col cols="">
           <b-card-text class="float-left ml-1">
             <a :href="post.url">{{ post.title }}</a>
             <router-link
@@ -40,7 +40,12 @@
               :to="{
                 name: 'comments',
                 params: {
-                  id: { title: post.title, imgsrc: post.url, post_id: post.id },
+                  id: {
+                    title: post.title,
+                    imgsrc: post.url,
+                    post_id: post.id,
+                    thumbnail: post.thumbnail,
+                  },
                 },
               }"
             >

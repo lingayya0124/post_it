@@ -3,8 +3,8 @@
     <div class="">
       <h1 class="mt-2 row d-flex justify-content-center">{{ title }}</h1>
       <br />
-      <div class="row d-flex justify-content-center">
-        <img class="image" :src="imgsrc" />
+      <div v-if="thumbnail == 'self'" class="row d-flex justify-content-center">
+        <img class="image" :src="imgsrc" alt="" />
       </div>
 
       <b-card
@@ -13,7 +13,7 @@
         :key="comment.index"
       >
         <b-row>
-          <b-col cols="1" class="d-flex justify-content-center">
+          <b-col md="left" class="d-flex justify-content-center">
             <div class="d-flex flex-column">
               <div class="d-flex justify-content-center">
                 <i class="fas fa-caret-up fa-2x"></i>
@@ -26,7 +26,7 @@
               </div>
             </div>
           </b-col>
-          <b-col cols="">
+          <b-col>
             <b-card-text class="float-left ml-1">
               {{ comment.body }}
             </b-card-text>
@@ -45,6 +45,7 @@ export default {
 
   data() {
     return {
+      thumbnail: this.$route.params.id.thumbnail,
       title: this.$route.params.id.title,
       imgsrc: this.$route.params.id.imgsrc,
       comments: [],

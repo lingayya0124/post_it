@@ -24,6 +24,12 @@
               class="imgThumb"
             />
           </a>
+          <img
+            class="imgThumb"
+            v-if="post.thumbnail == 'self'"
+            src="@/assets/d3455a22af5f3ed7565fb5fb71bb8d43-send-message-icon-by-vexels.png"
+            alt=""
+          />
         </b-col>
         <b-col cols="8">
           <b-card-text class="float-left ml-1">

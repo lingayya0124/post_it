@@ -1,9 +1,14 @@
 <template>
   <div class="container">
     <div class="">
-      <h1 class="mt-2 row d-flex justify-content-center">{{ title }}</h1>
+      <h1 class="mt-2 row d-flex justify-content-center">
+        {{ title }}
+      </h1>
       <br />
-      <div v-if="thumbnail == 'self'" class="row d-flex justify-content-center">
+      <div
+        v-if="thumbnail !== 'self'"
+        class="row d-flex justify-content-center"
+      >
         <img class="image" :src="imgsrc" alt="" />
       </div>
 
@@ -45,25 +50,30 @@ export default {
 
   data() {
     return {
-      thumbnail: this.$route.params.id.thumbnail,
-      title: this.$route.params.id.title,
-      imgsrc: this.$route.params.id.imgsrc,
+      thumbnail: "",
+      title: "",
+      imgsrc: "",
       comments: [],
-      id: this.$route.params.id.post_id,
+      id: "",
     };
   },
 
   mounted: function () {
-    console.log(this.indexid);
+    this.id = this.$route.params.id;
     access.reddit_Fetch
       .getSubmission(this.id)
       .expandReplies({ limit: 1, depth: 1 })
       .then((comment_data) => {
-        comment_data.comments.forEach((comment_data) => {
-          this.comments.push(comment_data);
-        });
+        this.title = comment_data.title;
+        this.thumbnail = comment_data.thumbnail;
+        this.imgsrc = comment_data.preview.images[0].resolutions[3].url;
+        console.log(comment_data);
+        comment_data.comments
+          .forEach((comment_data) => {
+            this.comments.push(comment_data);
+          })
+          .catch((error) => console.log(error));
       });
-    // });
   },
 };
 </script>
@@ -75,10 +85,6 @@ h1 {
   width: 400px;
   height: 400px;
 }
-/* .icon {
-  width: 100px;
-  height: 69px;
-} */
 </style>
 
 

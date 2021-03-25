@@ -1,43 +1,41 @@
 <template>
   <div class="home row d-flex justify-content-center w-100">
-    <post
+    <subreddit-post
       class="col-12"
       v-bind:post="singlepost"
       v-for="singlepost in posts"
       :key="singlepost.index"
-    >
-    </post>
+    ></subreddit-post>
+
     <br />
   </div>
 </template>
 
 <script>
-import post from "./Posts";
+import SubredditPost from "./SubredditPost.vue";
 import access from "@/access.js";
 export default {
   components: {
-    post,
+    SubredditPost,
   },
   data() {
     return {
+      name: this.$route.params.name,
       posts: [],
     };
   },
   mounted: function () {
     access.reddit_Fetch
-      .getHot()
+      .getHot(this.name)
       .map((get) => get)
       .then((data) => {
         data.forEach((data) => {
           this.posts.push(data);
         });
-        console.log(data);
       });
   },
 };
 </script>
-
-
 <style scoped>
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
 .home {

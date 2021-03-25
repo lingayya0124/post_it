@@ -45,16 +45,6 @@
             >
               <p>{{ post.num_comments }} comments</p></router-link
             >
-            <router-link
-              :to="{
-                name: 'subreddit',
-                params: {
-                  name: post.subreddit.display_name,
-                },
-              }"
-            >
-              <p>Subreddit:{{ post.subreddit_name_prefixed }}</p></router-link
-            >
           </b-card-text>
         </b-col>
       </b-row>

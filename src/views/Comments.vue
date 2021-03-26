@@ -10,46 +10,30 @@
         class="row d-flex justify-content-center"
       >
         <img class="image" :src="imgsrc" alt="" />
+        <comment
+          class="col-12"
+          v-bind:comment="singlecomment"
+          v-for="singlecomment in comments"
+          :key="singlecomment.index"
+        ></comment>
       </div>
-
-      <b-card
-        class="card-1 mb-2 w-100"
-        v-for="comment in comments"
-        :key="comment.index"
-      >
-        <b-row>
-          <b-col md="left" class="d-flex justify-content-center">
-            <div class="d-flex flex-column">
-              <div class="d-flex justify-content-center">
-                <i class="fas fa-caret-up fa-2x"></i>
-              </div>
-
-              <div class="d-flex justify-content-center">{{ comment.ups }}</div>
-
-              <div class="d-flex justify-content-center">
-                <i class="fas fa-caret-down fa-2x"></i>
-              </div>
-            </div>
-          </b-col>
-          <b-col>
-            <b-card-text class="float-left ml-1">
-              {{ comment.body }}
-            </b-card-text>
-          </b-col>
-        </b-row>
-      </b-card>
     </div>
   </div>
 </template>
 
 <script>
 import access from "@/access.js";
-
+import comment from "@/components/comment.vue";
 export default {
   name: "comments",
+  components: {
+    comment,
+  },
 
   data() {
     return {
+      isOrange: false,
+      isSkyblue: false,
       thumbnail: "",
       title: "",
       imgsrc: "",
@@ -66,7 +50,8 @@ export default {
       .then((comment_data) => {
         this.title = comment_data.title;
         this.thumbnail = comment_data.thumbnail;
-        this.imgsrc = comment_data.preview.images[0].resolutions[3].url;
+        // this.imgsrc = comment_data.preview.images[0].resolutions[3].url;
+        this.imgsrc = comment_data.url;
         console.log(comment_data);
         comment_data.comments
           .forEach((comment_data) => {
@@ -74,6 +59,7 @@ export default {
           })
           .catch((error) => console.log(error));
       });
+    console.log(this.comments);
   },
 };
 </script>

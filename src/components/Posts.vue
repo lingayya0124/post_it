@@ -5,13 +5,21 @@
         <b-col md="left" class="d-flex justify-content-center">
           <div class="icon d-flex flex-column">
             <div class="d-flex justify-content-center">
-              <i class="fas fa-caret-up fa-2x"></i>
+              <i
+                @click="upvotes()"
+                :style="{ color: isOrange ? 'orange' : '' }"
+                class="fas fa-caret-up fa-2x"
+              ></i>
             </div>
 
-            <div class="d-flex justify-content-center">{{ post.ups }}</div>
+            <div class="d-flex justify-content-center">{{ postup }}</div>
 
             <div class="d-flex justify-content-center">
-              <i class="fas fa-caret-down fa-2x"></i>
+              <i
+                @click="downvotes()"
+                :style="{ color: isSkyblue ? 'skyblue' : '' }"
+                class="fas fa-caret-down fa-2x"
+              ></i>
             </div>
           </div>
         </b-col>
@@ -62,8 +70,47 @@
   </div>
 </template>
 <script>
+import access from "@/access.js";
+
 export default {
   props: ["post"],
+  data() {
+    return {
+      isOrange: false,
+      isSkyblue: false,
+
+      postup: this.post.ups,
+    };
+  },
+  methods: {
+    upvotes() {
+      this.isOrange = !this.isOrange;
+
+      if (this.isOrange == true) {
+        this.isSkyblue = false;
+        access.reddit_Fetch.getSubmission(this.post.id).upvote();
+        this.postup = this.postup + 1;
+        console.log("upvote");
+      } else {
+        access.reddit_Fetch.getSubmission(this.post.id).unvote();
+        this.postup = this.postup - 1;
+        console.log("unvote");
+      }
+    },
+    downvotes() {
+      this.isSkyblue = !this.isSkyblue;
+      if (this.isSkyblue == true) {
+        this.isOrange = false;
+        access.reddit_Fetch.getSubmission(this.post.id).downvote();
+        this.postup = this.postup - 1;
+      } else {
+        access.reddit_Fetch.getSubmission(this.post.id).unvote();
+        this.postup = this.postup + 1;
+
+        console.log(this.postup);
+      }
+    },
+  },
 };
 </script>
 

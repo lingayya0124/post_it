@@ -8,7 +8,7 @@
 
     <nav class="navbar navbar-dark bg-dark">
       <span class="navbar-brand"
-        ><router-link to="/"> Postit </router-link></span
+        ><router-link class="Home_link" to="/"> Postit </router-link></span
       >
     </nav>
     <router-view></router-view>
@@ -25,5 +25,10 @@ export default {};
 } */
 #app {
   background-color: rgb(199, 215, 230);
+}
+.Home_link {
+  text-decoration: none;
+  color: yellow;
+  font-size: 2rem;
 }
 </style>

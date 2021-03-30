@@ -40,29 +40,33 @@
           />
         </b-col>
         <b-col cols="">
-          <b-card-text class="float-left ml-1">
-            <a :href="post.url">{{ post.title }}</a>
-            <router-link
-              class="link"
-              :to="{
-                name: 'comments',
-                params: {
-                  id: post.id,
-                },
-              }"
-            >
-              <p>{{ post.num_comments }} comments</p></router-link
-            >
-            <router-link
-              :to="{
-                name: 'subreddit',
-                params: {
-                  name: post.subreddit.display_name,
-                },
-              }"
-            >
-              <p>Subreddit:{{ post.subreddit_name_prefixed }}</p></router-link
-            >
+          <b-card-text class="float-left ml-4">
+            <a class="title" :href="post.url">{{ post.title }}</a>
+
+            <div class="row ml-1">
+              <router-link
+                class="link"
+                :to="{
+                  name: 'comments',
+                  params: {
+                    id: post.id,
+                  },
+                }"
+              >
+                <p>{{ post.num_comments }} comments</p></router-link
+              >
+              <router-link
+                class="ml-2 subreddit"
+                :to="{
+                  name: 'subreddit',
+                  params: {
+                    name: post.subreddit.display_name,
+                  },
+                }"
+              >
+                <p>Subreddit:{{ post.subreddit_name_prefixed }}</p></router-link
+              >
+            </div>
           </b-card-text>
         </b-col>
       </b-row>
@@ -118,10 +122,22 @@ export default {
 .imgThumb {
   width: 140px;
   height: 100px;
+  border-radius: 8px;
 }
 
 .link {
   text-decoration: none;
+
+  color: #888;
+}
+.title {
+  font-family: "Times New Roman", Times, serif;
+  text-decoration: none;
+  color: black;
+}
+.subreddit {
+  text-decoration: none;
+
   color: #888;
 }
 </style>

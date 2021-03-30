@@ -1,10 +1,16 @@
 <template>
-  <div id="app">
-    <div class="nav bg-dark">
+  <div id="app" class="justify-content-center">
+    <!-- <div class="nav bg-dark">
       <router-link class="link" to="/">
         <h1>Postit</h1>
       </router-link>
-    </div>
+    </div> -->
+
+    <nav class="navbar navbar-dark bg-dark">
+      <span class="navbar-brand"
+        ><router-link to="/"> Postit </router-link></span
+      >
+    </nav>
     <router-view></router-view>
   </div>
 </template>
@@ -13,8 +19,11 @@ export default {};
 </script>
 
 <style scoped>
-.nav {
+/* .nav {
   width: 100%;
   height: 50px;
+} */
+#app {
+  background-color: rgb(199, 215, 230);
 }
 </style>

@@ -1,13 +1,17 @@
 <template>
   <div class="home row d-flex justify-content-center w-100">
-    <subreddit-post
-      class="col-12"
-      v-bind:post="singlepost"
-      v-for="singlepost in posts"
-      :key="singlepost.index"
-    ></subreddit-post>
+    <div class="container">
+      <br />
 
-    <br />
+      <subreddit-post
+        class="col-12"
+        v-bind:post="singlepost"
+        v-for="singlepost in posts"
+        :key="singlepost.index"
+      ></subreddit-post>
+
+      <br />
+    </div>
   </div>
 </template>
 

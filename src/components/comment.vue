@@ -25,7 +25,7 @@
         </b-col>
         <b-col>
           <b-card-text class="float-left ml-1">
-            {{ comment.body }}
+            <p class="mt-4">{{ comment.body }}</p>
           </b-card-text>
         </b-col>
       </b-row>

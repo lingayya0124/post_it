@@ -1,13 +1,17 @@
 <template>
-  <div class="home row d-flex justify-content-center w-100">
-    <post
-      class="col-12"
-      v-bind:post="singlepost"
-      v-for="singlepost in posts"
-      :key="singlepost.index"
-    >
-    </post>
-    <br />
+  <div class="home row d-flex justify-content-center">
+    <div class="container">
+      <br />
+      <post
+        class="col-12 post"
+        v-bind:post="singlepost"
+        v-for="singlepost in posts"
+        :key="singlepost.index"
+      >
+      </post>
+
+      <br />
+    </div>
   </div>
 </template>
 
@@ -41,29 +45,14 @@ export default {
 <style scoped>
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
 .home {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: verdana, arial, helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   color: #2c3e50;
 }
 
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-.card1 {
-  max-width: 50rem;
-  height: 20rem;
+.card {
+  background-color: rgb(199, 215, 230);
 }
 </style>

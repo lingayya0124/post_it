@@ -1,21 +1,26 @@
 <template>
-  <div class="container">
+  <div class="container bg-light border border-success mt-4">
     <div class="">
-      <h1 class="mt-2 row d-flex justify-content-center">
-        {{ title }}
-      </h1>
+      <div class="col">
+        <h5 class="mt-2 row d-flex justify-content-center">
+          {{ title }}
+        </h5>
+      </div>
       <br />
       <div
         v-if="thumbnail !== 'self'"
         class="row d-flex justify-content-center"
       >
-        <img class="image" :src="imgsrc" alt="" />
-        <comment
-          class="col-12"
-          v-bind:comment="singlecomment"
-          v-for="singlecomment in comments"
-          :key="singlecomment.index"
-        ></comment>
+        <img class="image mb-4" :src="imgsrc" alt="" />
+        <br />
+        <div class="container p-5">
+          <comment
+            class="col-12"
+            v-bind:comment="singlecomment"
+            v-for="singlecomment in comments"
+            :key="singlecomment.index"
+          ></comment>
+        </div>
       </div>
     </div>
   </div>
